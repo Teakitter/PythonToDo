@@ -1,5 +1,5 @@
 def main(): ##function
-    tasks = [] #empty list
+    tasks = [] #empty list - this is a variable. can use this in functions (print tasks). entries are automatically indexd
 
     while True:
         print("\n===== To-Do List =====")
