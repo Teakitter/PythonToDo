@@ -1,3 +1,9 @@
+# ------------------------
+    # tasks = our list
+    # task = task variable, stored in our tasks list
+    # \n is a line break
+    # w = opens a pre-existing file, creates a new one if it does not exist.
+# ------------------------
 
 def display_menu(): # function - displays some print upon launch
     print("-----------------------")
@@ -14,7 +20,7 @@ def add_task(tasks): # function - adds a new variable to our list 'tasks' - list
     print(f"Task '{task}' added successfully!") # lets the user know input worked. f allows for a variable to be used, and in this case our variable is {task}, which will be user input
 
 def view_tasks(tasks): # function - viewing our list variables.
-    print("\nTasks:") # \n creates a line break, then begins listing.
+    print("\nTasks:") # \n creates a line break, then begins listing. 
     for i, task in enumerate(tasks, start=1): # clarification needed - i = index, then task name, enumerate means list one by one. right now, its taking all of tasks in our list and writing them out bbehind the scenes
         print(f"{i}. {task}") # then prints all of the tasks based on the above? f is inserting variables (in this case, the index and the task, then it follows the neumerate ) this line pritns out what above did.
 
@@ -33,10 +39,19 @@ def mark_task_done(tasks): # function - as described
         print("Invalid task index.")
 
 def save_tasks(tasks): # save tasks to a txt file for it to be presistent
-    print("hello!")
+    with open("tasks.txt", "w") as f: # opens our tasks text file, creates it if it does not exist. as f in the with open line means that the following (the f.write) is done with the text file?
+        for task in tasks:
+            f.write(task + '\n')
+
+def load_tasks(tasks):
+    try:
+        with open("tasks.txt", "r") as f:
+            return f.read().splitlines()
+    except FileNotFoundError:
+        return []
 
 def main(): # function - main program
-    tasks = [] # empty list finally created
+    tasks = load_tasks()
 
     while True: # runs until told to stop
         display_menu() # while our function is active, display our menu function
@@ -51,6 +66,7 @@ def main(): # function - main program
             mark_task_done(tasks)
         elif choice == '4':
             print("Goodbye!")
+            save_tasks(tasks)
             break
         else:
             print("Invalid choice. Please select a valid option.")
