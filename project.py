@@ -33,10 +33,19 @@ def mark_task_done(tasks): # function - as described
         print("Invalid task index.")
 
 def save_tasks(tasks): # save tasks to a txt file for it to be presistent
-    print("hello!")
+    with open("tasks.txt", "w") as f:
+            for task in tasks:
+                f.write(task + '\n')
+
+def load_tasks():
+    try:
+        with open ("tasks.txt", "r") as f:
+            return f.read().splitlines()
+    except FileNotFoundError:
+            return[]
 
 def main(): # function - main program
-    tasks = [] # empty list finally created
+    tasks = load_tasks()
 
     while True: # runs until told to stop
         display_menu() # while our function is active, display our menu function
@@ -51,6 +60,7 @@ def main(): # function - main program
             mark_task_done(tasks)
         elif choice == '4':
             print("Goodbye!")
+            save_tasks(tasks)
             break
         else:
             print("Invalid choice. Please select a valid option.")
