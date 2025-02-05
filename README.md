@@ -1,3 +1,5 @@
+currently not being worked on
+
 # About The Project
 
 The purpose of this project was to gain some experience with Python, GitHub, and Visual Studio Code. Between my interest in productivity applications and data, Python was a recommended choice to get started with.
